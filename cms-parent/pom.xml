@@ -12,6 +12,7 @@
 
     <modules>
         <module>cms-model</module>
+        <module>cms-dao</module>
     </modules>
     
     <properties>
