@@ -13,6 +13,8 @@
     <modules>
         <module>cms-model</module>
         <module>cms-dao</module>
+        <module>cms-service</module>
+        <module>cms-web</module>
     </modules>
     
     <properties>

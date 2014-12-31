@@ -39,5 +39,11 @@
             <artifactId>hibernate-c3p0</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.fred.cms</groupId>
+            <artifactId>cms-model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 </project>
