@@ -20,7 +20,7 @@ public class User implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "user_id", unique = true, nullable = false)
+    @Column(name = "user_id")
     private Integer userId;
 
     @Column(name = "email", unique = true)
@@ -53,7 +53,7 @@ public class User implements java.io.Serializable {
     private Date updated;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "last_login")
+    @Column(name = "last_login", nullable = false)
     private Date lastLogin;
 
     @Column(name = "last_ip", nullable = false)
