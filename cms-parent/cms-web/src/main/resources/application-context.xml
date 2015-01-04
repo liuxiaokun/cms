@@ -8,6 +8,4 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
 
-    <!-- unnecessary! <context:annotation-config /> because <context:component-scan> contains it.-->
-    <context:component-scan base-package="com.fred.cms" />
 </beans>

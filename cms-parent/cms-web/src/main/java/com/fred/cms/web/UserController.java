@@ -1,14 +1,15 @@
 package com.fred.cms.web;
 
-import javax.annotation.Resource;
-
 import org.springframework.stereotype.Controller;
-
-import com.fred.cms.service.UserService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class UserController {
 
-    @Resource
-    private UserService userService;
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String testFrameWork() {
+
+        return "success";
+    }
 }
