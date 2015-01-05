@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fred.cms.service.CategoryService;
+import com.fred.cms.util.ResponseUtil;
 import com.fred.cms.vo.CategoryListVO;
 import com.fred.cms.web.base.BaseController;
 
@@ -24,10 +26,9 @@ public class CategoryController extends BaseController {
 
     @RequestMapping(value = "category/{parentId}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> listByParentId(@PathVariable Integer parentId) {
+    public ResponseEntity<String> listByParentId(@PathVariable Integer parentId) throws JSONException {
 
         List<CategoryListVO> vos = categoryService.listByParentId(parentId);
-        System.out.println(vos);
-        return new ResponseEntity<String>(HttpStatus.OK);
+        return ResponseUtil.jsonSucceed(vos, HttpStatus.OK);
     }
 }
