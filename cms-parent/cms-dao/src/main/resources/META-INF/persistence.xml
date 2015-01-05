@@ -6,6 +6,8 @@
     <persistence-unit name="fred" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
         <class>com.fred.cms.model.User</class>
+        <class>com.fred.cms.model.Content</class>
+        <class>com.fred.cms.model.Category</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />

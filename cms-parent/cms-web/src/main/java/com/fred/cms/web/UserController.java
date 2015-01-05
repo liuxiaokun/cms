@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fred.cms.request.UserRequest;
 import com.fred.cms.web.base.BaseController;
-import com.fred.cms.web.request.UserRequest;
 
 @Controller
 @RequestMapping("user")

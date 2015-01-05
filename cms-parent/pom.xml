@@ -15,6 +15,7 @@
         <module>cms-dao</module>
         <module>cms-service</module>
         <module>cms-web</module>
+        <module>cms-util</module>
     </modules>
 
     <properties>

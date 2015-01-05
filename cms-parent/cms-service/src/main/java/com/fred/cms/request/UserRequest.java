@@ -1,4 +1,4 @@
-package com.fred.cms.web.request;
+package com.fred.cms.request;
 
 import java.io.Serializable;
 
