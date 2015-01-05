@@ -20,19 +20,19 @@ public class User implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "user_id", unique = true)
     private Integer userId;
 
     @Column(name = "email", unique = true)
     private String email;
 
-    @Column(name = "mobile", unique = true)
+    @Column(name = "mobile", unique = true, length = 11)
     private String mobile;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = false, length = 32)
     private String password;
 
-    @Column(name = "salt", nullable = false)
+    @Column(name = "salt", nullable = false, length = 6)
     private String salt;
 
     @Column(name = "is_email_verified", nullable = false)

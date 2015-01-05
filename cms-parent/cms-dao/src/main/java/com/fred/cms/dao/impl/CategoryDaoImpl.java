@@ -1,5 +1,9 @@
 package com.fred.cms.dao.impl;
 
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import org.springframework.stereotype.Repository;
 
 import com.fred.cms.dao.CategoryDao;
@@ -11,6 +15,15 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 
     public CategoryDaoImpl() {
         setClazz(Category.class);
+    }
+
+    @Override
+    public List<Category> listByParentId(Integer parentId) {
+
+        TypedQuery<Category> query = getEM(true).createNamedQuery("Category.findByParentId", Category.class);
+        query.setParameter("parentId", parentId);
+
+        return query.getResultList();
     }
 
 }

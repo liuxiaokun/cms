@@ -58,7 +58,7 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
             break;
         }
 
-        sql.append(" FROM content c ");
+        sql.append(" FROM content c WHERE c.is_deleted = false");
         sql.append(" ORDER BY c.created DESC ");
 
         return sql.toString();

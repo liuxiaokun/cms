@@ -20,7 +20,7 @@ public class Content implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "content_id")
+    @Column(name = "content_id", unique = true)
     private Integer contentId;
 
     @Column(name = "title", nullable = false)
@@ -35,8 +35,8 @@ public class Content implements Serializable {
     @Column(name = "category_id", nullable = false)
     private Integer categoryId;
 
-    @Column(name = "sort_order")
-    private Integer sortOrder;
+    @Column(name = "sort_order", nullable = false)
+    private Integer sortOrder = 0;
 
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted = false;
