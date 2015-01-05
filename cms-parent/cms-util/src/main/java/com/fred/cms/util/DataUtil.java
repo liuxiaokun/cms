@@ -17,7 +17,8 @@ import java.util.Set;
 
 import org.springframework.util.StringUtils;
 
-import com.fred.cms.util.constant.CommonConstant;
+import com.fred.cms.constant.CommonConstant;
+import com.fred.cms.vo.Pagination;
 
 public class DataUtil {
 
@@ -72,16 +73,14 @@ public class DataUtil {
                 }
             }
             result = resultList;
-        }
-        // else if (response instanceof Pagination) {
-        // int count = ((Pagination<?>) response).getCount();
-        // List<?> list = ((Pagination<?>) response).getList();
-        // Map<String, Object> resultMap = new HashMap<String, Object>();
-        // resultMap.put("count", count);
-        // resultMap.put("list", formatApiResponse(list));
-        // result = resultMap;
-        // }
-        else if (responseClass.getName().endsWith("VO")) {
+        } else if (response instanceof Pagination) {
+            int count = ((Pagination<?>) response).getCount();
+            List<?> list = ((Pagination<?>) response).getList();
+            Map<String, Object> resultMap = new HashMap<String, Object>();
+            resultMap.put("count", count);
+            resultMap.put("list", formatApiResponse(list));
+            result = resultMap;
+        } else if (responseClass.getName().endsWith("VO")) {
             result = formatVO(response);
         } else if (response instanceof String) {
 

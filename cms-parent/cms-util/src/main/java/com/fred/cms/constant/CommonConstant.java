@@ -1,4 +1,4 @@
-package com.fred.cms.util.constant;
+package com.fred.cms.constant;
 
 public interface CommonConstant {
 

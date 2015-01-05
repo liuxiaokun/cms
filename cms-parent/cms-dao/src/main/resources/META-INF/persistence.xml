@@ -8,6 +8,9 @@
         <class>com.fred.cms.model.User</class>
         <class>com.fred.cms.model.Content</class>
         <class>com.fred.cms.model.Category</class>
+        <class>com.fred.cms.model.Media</class>
+        <class>com.fred.cms.model.ContentMedia</class>
+        <class>com.fred.cms.model.Review</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />

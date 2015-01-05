@@ -9,7 +9,7 @@ import java.util.Locale;
 
 import org.springframework.util.StringUtils;
 
-import com.fred.cms.util.constant.CommonConstant;
+import com.fred.cms.constant.CommonConstant;
 
 public final class DateUtil {
 

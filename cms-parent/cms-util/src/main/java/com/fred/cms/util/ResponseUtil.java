@@ -6,9 +6,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import com.fred.cms.util.constant.ContentType;
-import com.fred.cms.util.constant.ResponseCode;
-import com.fred.cms.util.constant.ResponseStatus;
+import com.fred.cms.constant.ContentType;
+import com.fred.cms.constant.ResponseCode;
+import com.fred.cms.constant.ResponseStatus;
 
 public final class ResponseUtil {
 

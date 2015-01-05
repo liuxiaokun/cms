@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fred.cms.constant.ResponseCode;
 import com.fred.cms.util.ResponseUtil;
-import com.fred.cms.util.constant.ResponseCode;
 
 public abstract class BaseController {
 

@@ -7,11 +7,11 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.fred.cms.constant.QueryType;
 import com.fred.cms.criteria.ContentListCriteria;
 import com.fred.cms.dao.ContentDao;
 import com.fred.cms.dao.base.BaseDaoImpl;
 import com.fred.cms.model.Content;
-import com.fred.cms.util.constant.QueryType;
 
 @Repository
 public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
