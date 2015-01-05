@@ -12,12 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fred.cms.web.base.BaseController;
 import com.fred.cms.web.request.UserRequest;
 
 @Controller
 @RequestMapping("user")
 // http://localhost:8080/cms/user/test?password=123&code=456
-public class UserController {
+public class UserController extends BaseController {
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     @ResponseBody

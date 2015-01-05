@@ -1,4 +1,8 @@
 package com.fred.cms.dao;
 
-public interface UserDao {
+import com.fred.cms.dao.base.BaseDao;
+import com.fred.cms.model.User;
+
+public interface UserDao extends BaseDao<User> {
+
 }
