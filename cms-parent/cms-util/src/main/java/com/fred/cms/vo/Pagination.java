@@ -1,3 +1,8 @@
+/**
+ * @author Fred Liu <liuxiaokun0410@qq.com>
+ * @version 1.7
+ * @since Jan 6, 2015 9:00:28 AM
+ */
 package com.fred.cms.vo;
 
 import java.io.Serializable;

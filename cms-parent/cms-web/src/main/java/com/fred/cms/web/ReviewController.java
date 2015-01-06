@@ -1,3 +1,8 @@
+/**
+ * @author Fred Liu <liuxiaokun0410@qq.com>
+ * @version 1.7
+ * @since Jan 6, 2015 9:01:08 AM
+ */
 package com.fred.cms.web;
 
 import javax.annotation.Resource;

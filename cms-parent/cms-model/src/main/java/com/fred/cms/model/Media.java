@@ -1,3 +1,8 @@
+/**
+ * @author Fred Liu <liuxiaokun0410@qq.com>
+ * @version 1.7
+ * @since Jan 6, 2015 8:57:41 AM
+ */
 package com.fred.cms.model;
 
 import static javax.persistence.GenerationType.IDENTITY;

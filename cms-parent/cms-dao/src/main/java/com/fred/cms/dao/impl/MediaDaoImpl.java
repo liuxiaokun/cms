@@ -1,3 +1,8 @@
+/**
+ * @author Fred Liu <liuxiaokun0410@qq.com>
+ * @version 1.7
+ * @since Jan 6, 2015 8:56:41 AM
+ */
 package com.fred.cms.dao.impl;
 
 import com.fred.cms.dao.MediaDao;

@@ -1,3 +1,8 @@
+/**
+ * @author Fred Liu <liuxiaokun0410@qq.com>
+ * @version 1.7
+ * @since Jan 6, 2015 8:56:34 AM
+ */
 package com.fred.cms.dao.impl;
 
 import java.math.BigInteger;
@@ -37,7 +42,6 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
 
         String sql = genSQL(contentListCriteria, QueryType.COUNT);
         Query query = getEM(true).createNativeQuery(sql);
-        //if content_id is int , count is BigInteger, if content_id is bigint, count is Long.
         BigInteger count = (BigInteger) query.getSingleResult();
 
         return count.intValue();
