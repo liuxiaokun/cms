@@ -22,6 +22,8 @@ public class ContentListVO implements Serializable {
 
     private Integer sortOrder;
 
+    private String user
+
     public Integer getContentId() {
         return contentId;
     }

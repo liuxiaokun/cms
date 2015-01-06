@@ -28,6 +28,9 @@ public class Content implements Serializable {
     @Column(name = "content_id", unique = true)
     private Integer contentId;
 
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
+
     @Column(name = "title", nullable = false)
     private String title;
 

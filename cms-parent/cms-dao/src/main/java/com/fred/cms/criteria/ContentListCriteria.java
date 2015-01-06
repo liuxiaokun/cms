@@ -9,4 +9,14 @@ public class ContentListCriteria extends PaginationCriteria {
 
     private static final long serialVersionUID = 7329981590092185858L;
 
+    private Integer userId;
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
 }

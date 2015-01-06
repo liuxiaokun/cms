@@ -7,4 +7,7 @@ package com.fred.cms.service.base;
 
 public class BaseServiceImpl implements BaseService {
 
+    protected int getUserId() {
+        return 1;
+    }
 }

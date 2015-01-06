@@ -31,6 +31,7 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
 
         String sql = genSQL(contentListCriteria, QueryType.ENTITY);
         Query query = getEM(true).createNativeQuery(sql, Content.class);
+        query.setParameter("userId", contentListCriteria.getUserId());
         query.setFirstResult(contentListCriteria.getOffset());
         query.setMaxResults(contentListCriteria.getLimit());
 
@@ -42,6 +43,7 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
 
         String sql = genSQL(contentListCriteria, QueryType.COUNT);
         Query query = getEM(true).createNativeQuery(sql);
+        query.setParameter("userId", contentListCriteria.getUserId());
         BigInteger count = (BigInteger) query.getSingleResult();
 
         return count.intValue();
@@ -62,7 +64,7 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
             break;
         }
 
-        sql.append(" FROM content c WHERE c.is_deleted = false");
+        sql.append(" FROM content c WHERE c.is_deleted = false AND c.user_id = :userId");
         sql.append(" ORDER BY c.created DESC ");
 
         return sql.toString();

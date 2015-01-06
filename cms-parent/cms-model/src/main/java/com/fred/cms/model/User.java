@@ -28,6 +28,12 @@ public class User implements java.io.Serializable {
     @Column(name = "user_id", unique = true)
     private Integer userId;
 
+    @Column(name = "nickname", unique = true, nullable = false)
+    private String nickname;
+
+    @Column(name = "avatar")
+    private String avatar;
+
     @Column(name = "email", unique = true)
     private String email;
 
@@ -73,6 +79,22 @@ public class User implements java.io.Serializable {
 
     public void setUserId(Integer userId) {
         this.userId = userId;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getEmail() {
@@ -167,6 +189,7 @@ public class User implements java.io.Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((avatar == null) ? 0 : avatar.hashCode());
         result = prime * result + ((clientIp == null) ? 0 : clientIp.hashCode());
         result = prime * result + ((created == null) ? 0 : created.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
@@ -175,6 +198,7 @@ public class User implements java.io.Serializable {
         result = prime * result + ((lastIp == null) ? 0 : lastIp.hashCode());
         result = prime * result + ((lastLogin == null) ? 0 : lastLogin.hashCode());
         result = prime * result + ((mobile == null) ? 0 : mobile.hashCode());
+        result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((salt == null) ? 0 : salt.hashCode());
         result = prime * result + ((updated == null) ? 0 : updated.hashCode());
@@ -191,6 +215,11 @@ public class User implements java.io.Serializable {
         if (getClass() != obj.getClass())
             return false;
         User other = (User) obj;
+        if (avatar == null) {
+            if (other.avatar != null)
+                return false;
+        } else if (!avatar.equals(other.avatar))
+            return false;
         if (clientIp == null) {
             if (other.clientIp != null)
                 return false;
@@ -230,6 +259,11 @@ public class User implements java.io.Serializable {
             if (other.mobile != null)
                 return false;
         } else if (!mobile.equals(other.mobile))
+            return false;
+        if (nickname == null) {
+            if (other.nickname != null)
+                return false;
+        } else if (!nickname.equals(other.nickname))
             return false;
         if (password == null) {
             if (other.password != null)

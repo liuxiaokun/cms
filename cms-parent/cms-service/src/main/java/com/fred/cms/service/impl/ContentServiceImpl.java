@@ -30,22 +30,20 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
     @Override
     public Pagination<ContentListVO> listAllContents(ContentListRequest contentListRequest) {
 
-        ContentListCriteria contentListCriteria = new ContentListCriteria();
-        Integer offset = contentListRequest.getOffset();
-        Integer limit = contentListRequest.getLimit();
-        contentListCriteria.setOffset(offset == null ? 0 : offset);
-        contentListCriteria.setLimit(limit == null ? 0 : limit);
-
+        ContentListCriteria contentListCriteria = generateCriteria(contentListRequest);
         List<Content> contents = contentDao.listAllContents(contentListCriteria);
-        Integer count = contentDao.countAllContents(contentListCriteria);
-        
+
+        return new Pagination<ContentListVO>(formatContentsToVOs(contents),
+                contentDao.countAllContents(contentListCriteria));
+    }
+
+    private List<ContentListVO> formatContentsToVOs(List<Content> contents) {
         List<ContentListVO> vos = new ArrayList<ContentListVO>();
 
         for (Content content : contents) {
             vos.add(formatContentToVO(content));
         }
-
-        return new Pagination<ContentListVO>(vos, count);
+        return vos;
     }
 
     private ContentListVO formatContentToVO(Content content) {
@@ -56,7 +54,19 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
         vo.setDescription(content.getDescription());
         vo.setSortOrder(content.getSortOrder());
         vo.setCreate(content.getCreated());
-        
+
         return vo;
+    }
+
+    private ContentListCriteria generateCriteria(ContentListRequest contentListRequest) {
+        ContentListCriteria contentListCriteria = new ContentListCriteria();
+
+        Integer offset = contentListRequest.getOffset();
+        Integer limit = contentListRequest.getLimit();
+        contentListCriteria.setOffset(offset == null ? 0 : offset);
+        contentListCriteria.setLimit(limit == null ? 0 : limit);
+        contentListCriteria.setUserId(getUserId());
+
+        return contentListCriteria;
     }
 }
