@@ -75,6 +75,7 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
         contentListCriteria.setOffset(offset == null ? 0 : offset);
         contentListCriteria.setLimit(limit == null ? 0 : limit);
         contentListCriteria.setUserId(getUserId());
+        contentListCriteria.setCategoryId(contentListRequest.getCategoryId());
 
         return contentListCriteria;
     }

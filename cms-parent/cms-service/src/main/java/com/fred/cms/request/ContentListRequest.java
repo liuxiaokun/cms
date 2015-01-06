@@ -9,4 +9,13 @@ public class ContentListRequest extends PaginationRequest {
 
     private static final long serialVersionUID = 4419771638459093878L;
 
+    private Integer categoryId;
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
 }

@@ -29,8 +29,13 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
     @SuppressWarnings("unchecked")
     public List<Content> listAllContents(ContentListCriteria contentListCriteria) {
 
-        String sql = genSQL(contentListCriteria, QueryType.ENTITY);
+        Integer categoryId = contentListCriteria.getCategoryId();
+        String sql = genSQL(categoryId, QueryType.ENTITY);
         Query query = getEM(true).createNativeQuery(sql, Content.class);
+
+        if (null != categoryId) {
+            query.setParameter("categoryId", categoryId);
+        }
         query.setParameter("userId", contentListCriteria.getUserId());
         query.setFirstResult(contentListCriteria.getOffset());
         query.setMaxResults(contentListCriteria.getLimit());
@@ -41,15 +46,20 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
     @Override
     public Integer countAllContents(ContentListCriteria contentListCriteria) {
 
-        String sql = genSQL(contentListCriteria, QueryType.COUNT);
+        Integer categoryId = contentListCriteria.getCategoryId();
+        String sql = genSQL(categoryId, QueryType.COUNT);
         Query query = getEM(true).createNativeQuery(sql);
+
+        if (null != categoryId) {
+            query.setParameter("categoryId", categoryId);
+        }
         query.setParameter("userId", contentListCriteria.getUserId());
         BigInteger count = (BigInteger) query.getSingleResult();
 
         return count.intValue();
     }
 
-    private String genSQL(ContentListCriteria contentListCriteria, QueryType type) {
+    private String genSQL(Integer categoryId, QueryType type) {
 
         StringBuilder sql = new StringBuilder();
 
@@ -65,6 +75,10 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
         }
 
         sql.append(" FROM content c WHERE c.is_deleted = false AND c.user_id = :userId");
+
+        if (null != categoryId) {
+            sql.append(" AND c.category_id = :categoryId ");
+        }
         sql.append(" ORDER BY c.created DESC ");
 
         return sql.toString();

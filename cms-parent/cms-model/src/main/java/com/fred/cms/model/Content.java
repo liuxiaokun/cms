@@ -31,6 +31,9 @@ public class Content implements Serializable {
     @Column(name = "user_id", nullable = false)
     private Integer userId;
 
+    @Column(name = "category_id", nullable = false)
+    private Integer categoryId;
+
     @Column(name = "title", nullable = false)
     private String title;
 
@@ -39,9 +42,6 @@ public class Content implements Serializable {
 
     @Column(name = "content")
     private String content;
-
-    @Column(name = "category_id", nullable = false)
-    private Integer categoryId;
 
     @Column(name = "sort_order", nullable = false)
     private Integer sortOrder = 0;
