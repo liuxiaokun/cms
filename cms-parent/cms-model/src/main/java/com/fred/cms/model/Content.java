@@ -129,6 +129,14 @@ public class Content implements Serializable {
         this.updated = updated;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -142,6 +150,7 @@ public class Content implements Serializable {
         result = prime * result + ((sortOrder == null) ? 0 : sortOrder.hashCode());
         result = prime * result + ((title == null) ? 0 : title.hashCode());
         result = prime * result + ((updated == null) ? 0 : updated.hashCode());
+        result = prime * result + ((userId == null) ? 0 : userId.hashCode());
         return result;
     }
 
@@ -198,6 +207,11 @@ public class Content implements Serializable {
             if (other.updated != null)
                 return false;
         } else if (!updated.equals(other.updated))
+            return false;
+        if (userId == null) {
+            if (other.userId != null)
+                return false;
+        } else if (!userId.equals(other.userId))
             return false;
         return true;
     }

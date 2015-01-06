@@ -22,7 +22,9 @@ public class ContentListVO implements Serializable {
 
     private Integer sortOrder;
 
-    private String user
+    private String nickname;
+
+    private String avatar;
 
     public Integer getContentId() {
         return contentId;
@@ -62,5 +64,21 @@ public class ContentListVO implements Serializable {
 
     public void setSortOrder(Integer sortOrder) {
         this.sortOrder = sortOrder;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

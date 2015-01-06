@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import com.fred.cms.criteria.ContentListCriteria;
 import com.fred.cms.dao.ContentDao;
+import com.fred.cms.dao.UserDao;
 import com.fred.cms.model.Content;
+import com.fred.cms.model.User;
 import com.fred.cms.request.ContentListRequest;
 import com.fred.cms.service.ContentService;
 import com.fred.cms.service.base.BaseServiceImpl;
@@ -26,6 +28,9 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
 
     @Resource
     private ContentDao contentDao;
+
+    @Resource
+    private UserDao userDao;
 
     @Override
     public Pagination<ContentListVO> listAllContents(ContentListRequest contentListRequest) {
@@ -54,6 +59,10 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
         vo.setDescription(content.getDescription());
         vo.setSortOrder(content.getSortOrder());
         vo.setCreate(content.getCreated());
+
+        User user = userDao.getById(content.getUserId());
+        vo.setNickname(user.getNickname());
+        vo.setAvatar(user.getAvatar());
 
         return vo;
     }
