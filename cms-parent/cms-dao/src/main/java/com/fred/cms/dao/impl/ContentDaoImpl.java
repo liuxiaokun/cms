@@ -10,12 +10,15 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Repository;
 
 import com.fred.cms.constant.QueryType;
 import com.fred.cms.criteria.ContentListCriteria;
 import com.fred.cms.dao.ContentDao;
 import com.fred.cms.dao.base.BaseDaoImpl;
+import com.fred.cms.dto.ContentDTO;
 import com.fred.cms.model.Content;
 
 @Repository
@@ -82,6 +85,26 @@ public class ContentDaoImpl extends BaseDaoImpl<Content> implements ContentDao {
         sql.append(" ORDER BY c.created DESC ");
 
         return sql.toString();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public ContentDTO getDetailById(Integer contentId) {
+
+        StringBuilder sql = new StringBuilder();
+        sql.append(" SELECT u.nickname AS nickname, c.title AS title, c.created AS created, c.content AS content ");
+        sql.append(" , ca.name AS categoryName, ca.icon AS categoryIcon ");
+        sql.append(" FROM content c ");
+        sql.append(" LEFT JOIN user u ON c.user_id = u.user_id ");
+        sql.append(" LEFT JOIN category ca ON ca.category_id = c.category_id ");
+        sql.append(" WHERE c.content_id = :contentId");
+
+        Query query = getEM(true).createNativeQuery(sql.toString());
+        query.setParameter("contentId", contentId);
+        query.unwrap(SQLQuery.class).setResultTransformer(Transformers.aliasToBean(ContentDTO.class));
+        List<ContentDTO> resultList = query.getResultList();
+
+        return resultList.size() > 0 ? resultList.get(0) : null;
     }
 
 }

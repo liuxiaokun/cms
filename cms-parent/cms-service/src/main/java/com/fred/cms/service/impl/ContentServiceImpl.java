@@ -10,17 +10,20 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import com.fred.cms.criteria.ContentListCriteria;
 import com.fred.cms.dao.ContentDao;
 import com.fred.cms.dao.UserDao;
+import com.fred.cms.dto.ContentDTO;
 import com.fred.cms.model.Content;
 import com.fred.cms.model.User;
 import com.fred.cms.request.ContentListRequest;
 import com.fred.cms.service.ContentService;
 import com.fred.cms.service.base.BaseServiceImpl;
 import com.fred.cms.vo.ContentListVO;
+import com.fred.cms.vo.ContentVO;
 import com.fred.cms.vo.Pagination;
 
 @Service
@@ -40,6 +43,16 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
 
         return new Pagination<ContentListVO>(formatContentsToVOs(contents),
                 contentDao.countAllContents(contentListCriteria));
+    }
+
+    @Override
+    public ContentVO getDetailById(Integer contentId) {
+
+        ContentDTO contentDTO = contentDao.getDetailById(contentId);
+
+        ContentVO contentVO = new ContentVO();
+        BeanUtils.copyProperties(contentDTO, contentVO);
+        return contentVO;
     }
 
     private List<ContentListVO> formatContentsToVOs(List<Content> contents) {
