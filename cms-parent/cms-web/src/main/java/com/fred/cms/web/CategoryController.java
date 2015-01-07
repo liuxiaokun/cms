@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class CategoryController extends BaseController {
 
     @RequestMapping(value = "category/{parentId}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> listByParentId(@PathVariable Integer parentId) throws JSONException {
+    public ResponseEntity<String> listByParentId(@PathVariable Integer parentId) {
 
         List<CategoryListVO> vos = categoryService.listByParentId(parentId);
         return ResponseUtil.jsonSucceed(vos, HttpStatus.OK);

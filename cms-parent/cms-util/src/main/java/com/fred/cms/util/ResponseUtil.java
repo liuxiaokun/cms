@@ -5,8 +5,8 @@
  */
 package com.fred.cms.util;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import net.sf.json.JSONObject;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +27,7 @@ public final class ResponseUtil {
         // empty
     }
 
-    public static ResponseEntity<String> jsonSucceed(final Object object, final HttpStatus statusCode)
-            throws JSONException {
+    public static ResponseEntity<String> jsonSucceed(final Object object, final HttpStatus statusCode) {
 
         JSONObject json = new JSONObject();
         Object responseBody = DataUtil.formatApiResponse(object);
@@ -36,13 +35,12 @@ public final class ResponseUtil {
         return wrapResponse(ResponseStatus.SUCCEED, json, statusCode);
     }
 
-    public static ResponseEntity<String> jsonFailed(final String errorMessage, final HttpStatus statusCode)
-            throws JSONException {
+    public static ResponseEntity<String> jsonFailed(final String errorMessage, final HttpStatus statusCode) {
         return jsonFailed(errorMessage, ResponseCode.SERVER_ERROR, statusCode);
     }
 
     public static ResponseEntity<String> jsonFailed(final Object errorMessage, final ResponseCode code,
-            final HttpStatus statusCode) throws JSONException {
+            final HttpStatus statusCode) {
 
         JSONObject errorObj = new JSONObject();
         errorObj.accumulate(RESPONSE_ERROR_CODE, code.getValue());
@@ -57,9 +55,9 @@ public final class ResponseUtil {
     }
 
     private static ResponseEntity<String> wrapResponse(final ResponseStatus status, final JSONObject body,
-            final HttpStatus statusCode) throws JSONException {
+            final HttpStatus statusCode) {
 
-        //add { "status": "SUCCEED"}  or  { "status": "FAILED"}
+        // add { "status": "SUCCEED"} or { "status": "FAILED"}
         if (ResponseStatus.SUCCEED.equals(status)) {
             body.accumulate(RESPONSE_STATUS, ResponseStatus.SUCCEED.toString());
         } else if (ResponseStatus.FAILED.equals(status)) {

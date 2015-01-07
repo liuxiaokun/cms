@@ -5,7 +5,6 @@
  */
 package com.fred.cms.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -20,6 +19,7 @@ import com.fred.cms.service.ReviewService;
 import com.fred.cms.service.base.BaseServiceImpl;
 import com.fred.cms.vo.Pagination;
 import com.fred.cms.vo.ReviewListVO;
+import com.google.common.collect.Lists;
 
 @Service
 public class ReviewServiceImpl extends BaseServiceImpl implements ReviewService {
@@ -31,6 +31,15 @@ public class ReviewServiceImpl extends BaseServiceImpl implements ReviewService 
     public Pagination<ReviewListVO> listByContentId(ReviewListRequest reviewListRequest) {
 
         Integer contentId = reviewListRequest.getContentId();
+        ReviewCriteria criteria = generateCriteria(reviewListRequest);
+        List<Review> reviews = reviewDao.listByContentId(criteria);
+
+        return new Pagination<ReviewListVO>(formatToReviewVOs(reviews), reviewDao.countByContentId(contentId));
+    }
+
+    private ReviewCriteria generateCriteria(ReviewListRequest reviewListRequest) {
+
+        Integer contentId = reviewListRequest.getContentId();
         Integer offset = reviewListRequest.getOffset();
         Integer limit = reviewListRequest.getLimit();
 
@@ -38,9 +47,12 @@ public class ReviewServiceImpl extends BaseServiceImpl implements ReviewService 
         criteria.setContentId(contentId);
         criteria.setOffset(offset == null ? 0 : offset);
         criteria.setLimit(limit == null ? 20 : limit);
-        List<Review> reviews = reviewDao.listByContentId(criteria);
 
-        List<ReviewListVO> vos = new ArrayList<ReviewListVO>();
+        return criteria;
+    }
+
+    private List<ReviewListVO> formatToReviewVOs(List<Review> reviews) {
+        List<ReviewListVO> vos = Lists.newArrayList();
 
         for (Review review : reviews) {
 
@@ -51,8 +63,7 @@ public class ReviewServiceImpl extends BaseServiceImpl implements ReviewService 
 
             vos.add(vo);
         }
-
-        return new Pagination<ReviewListVO>(vos, reviewDao.countByContentId(contentId));
+        return vos;
     }
 
 }

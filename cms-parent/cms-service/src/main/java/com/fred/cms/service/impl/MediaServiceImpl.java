@@ -5,9 +5,12 @@
  */
 package com.fred.cms.service.impl;
 
+import org.springframework.stereotype.Service;
+
 import com.fred.cms.service.MediaService;
 import com.fred.cms.service.base.BaseServiceImpl;
 
+@Service
 public class MediaServiceImpl extends BaseServiceImpl implements MediaService {
 
 }

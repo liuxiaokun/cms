@@ -5,7 +5,6 @@
  */
 package com.fred.cms.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -25,6 +24,7 @@ import com.fred.cms.service.base.BaseServiceImpl;
 import com.fred.cms.vo.ContentListVO;
 import com.fred.cms.vo.ContentVO;
 import com.fred.cms.vo.Pagination;
+import com.google.common.collect.Lists;
 
 @Service
 public class ContentServiceImpl extends BaseServiceImpl implements ContentService {
@@ -56,7 +56,7 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
     }
 
     private List<ContentListVO> formatContentsToVOs(List<Content> contents) {
-        List<ContentListVO> vos = new ArrayList<ContentListVO>();
+        List<ContentListVO> vos = Lists.newArrayList();
 
         for (Content content : contents) {
             vos.add(formatContentToVO(content));

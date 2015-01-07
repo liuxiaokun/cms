@@ -8,7 +8,6 @@ package com.fred.cms.web;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -33,8 +32,7 @@ public class ContentController extends BaseController {
 
     @RequestMapping(value = "contents", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> listAllContent(@Valid ContentListRequest contentListRequest, BindingResult result)
-            throws JSONException {
+    public ResponseEntity<String> listAllContent(@Valid ContentListRequest contentListRequest, BindingResult result) {
 
         if (result.hasErrors()) {
             ResponseUtil.jsonSucceed(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -46,7 +44,7 @@ public class ContentController extends BaseController {
 
     @RequestMapping(value = "content/{contentId}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> getContentDetail(@PathVariable Integer contentId) throws JSONException {
+    public ResponseEntity<String> getContentDetail(@PathVariable Integer contentId) {
 
         return ResponseUtil.jsonSucceed(contentService.getDetailById(contentId), HttpStatus.OK);
     }

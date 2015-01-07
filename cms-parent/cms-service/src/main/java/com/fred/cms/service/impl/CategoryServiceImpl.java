@@ -5,7 +5,6 @@
  */
 package com.fred.cms.service.impl;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,6 +16,7 @@ import com.fred.cms.model.Category;
 import com.fred.cms.service.CategoryService;
 import com.fred.cms.service.base.BaseServiceImpl;
 import com.fred.cms.vo.CategoryListVO;
+import com.google.common.collect.Lists;
 
 @Service
 public class CategoryServiceImpl extends BaseServiceImpl implements CategoryService {
@@ -29,7 +29,12 @@ public class CategoryServiceImpl extends BaseServiceImpl implements CategoryServ
 
         List<Category> categories = categoryDao.listByParentId(parentId);
 
-        List<CategoryListVO> vos = new ArrayList<CategoryListVO>();
+        List<CategoryListVO> vos = formatToCategoryVOs(categories);
+        return vos;
+    }
+
+    private List<CategoryListVO> formatToCategoryVOs(List<Category> categories) {
+        List<CategoryListVO> vos = Lists.newArrayList();
 
         for (Category category : categories) {
             vos.add(formatToCategoryVO(category));

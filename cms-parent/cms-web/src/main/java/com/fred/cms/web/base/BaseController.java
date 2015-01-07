@@ -5,7 +5,6 @@
  */
 package com.fred.cms.web.base;
 
-import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,7 +17,7 @@ public abstract class BaseController {
 
     @ExceptionHandler(Throwable.class)
     @ResponseBody
-    public final ResponseEntity<String> handleException(final Throwable ex) throws JSONException {
+    public final ResponseEntity<String> handleException(final Throwable ex) {
 
         Object errorMessage = "server error";
 

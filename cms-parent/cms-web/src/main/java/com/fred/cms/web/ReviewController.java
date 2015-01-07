@@ -8,7 +8,6 @@ package com.fred.cms.web;
 import javax.annotation.Resource;
 import javax.validation.Valid;
 
-import org.json.JSONException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,7 +29,7 @@ public class ReviewController extends BaseController {
 
     @RequestMapping(value = "content/review")
     public ResponseEntity<String> getContentReview(@Valid ReviewListRequest reviewListRequest,
-            BindingResult bindingResult) throws JSONException {
+            BindingResult bindingResult) {
 
         Pagination<ReviewListVO> vos = reviewService.listByContentId(reviewListRequest);
         return ResponseUtil.jsonSucceed(vos, HttpStatus.OK);
