@@ -44,7 +44,8 @@ public class UserController extends BaseController {
         }
         Map<String, Object> params = Maps.newHashMap();
         params.put("username", "Fred");
-        mailUtil.sendEmail("liuxiaokun0410@qq.com", "subject", "emailTemplate/welcome.vm", params);
+        //mailUtil.sendTemplatedHtmlEmail("406394685@qq.com", "subject", "/imgs/qqmusic.jpg", "emailTemplate/html.vm", params);
+        //mailUtil.sendAttachemetnEmail("406394685@qq.com", "wo shi neirong", "wo shi zhuti ", "qqmusic.jpg");
         return username + ":" + password + ":" + userRequest.getCode();
     }
 }

@@ -3,7 +3,7 @@
  * @version 1.7
  * @since Jan 7, 2015 4:00:51 PM
  */
-package com.fred.cms.util;
+package com.fred.cms.util.mail;
 
 import java.io.Serializable;
 import java.util.Map;
@@ -38,14 +38,14 @@ public class MailUtil implements Serializable {
     /**
      * Send a simple text email.
      * 
-     * @param email
+     * @param to
      * @param subject
      * @param mailContent
      */
-    public void sendSimpleEmail(String email, String subject, String mailContent) {
+    public void sendSimpleEmail(String to, String subject, String mailContent) {
         SimpleMailMessage mail = new SimpleMailMessage();
-        mail.setTo(email);
-        mail.setFrom("liuxiaokun0410@qq.com");
+        mail.setTo(to);
+        mail.setFrom("fred_test@163.com");
         mail.setSubject(subject);
         mail.setText(mailContent);
         mailSender.send(mail);
