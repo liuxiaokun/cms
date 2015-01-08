@@ -1,6 +1,10 @@
 package com.fred.cms.util.mail;
 
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.google.common.collect.Maps;
 
 public class MailInfo {
 
@@ -102,5 +106,30 @@ public class MailInfo {
 
     public Map<String, Object> getParams() {
         return params;
+    }
+
+    public static void main(String[] args) {
+
+        Map<String, Object> params = Maps.newHashMap();
+        params.put("aaa", "bbb");
+
+        MailInfo mailInfo = new MailInfo.Builder("from", "to", "content", "subject")
+                .attachmentFilePath("attachmentFilePath").inlineFilePath("inlineFilePath").params(params).build();
+
+        System.out.println(mailInfo.getFrom());
+        System.out.println(mailInfo.getTo());
+        System.out.println(mailInfo.getContent());
+        System.out.println(mailInfo.getSubject());
+        System.out.println("-------------------------");
+
+        System.out.println(mailInfo.getAttachmentFilePath());
+        System.out.println(mailInfo.getInlineFilePath());
+        Set<Entry<String, Object>> entrySet = mailInfo.getParams().entrySet();
+
+        for (Entry<String, Object> entry : entrySet) {
+            System.out.println(entry.getKey());
+            System.out.println(entry.getValue());
+        }
+
     }
 }
