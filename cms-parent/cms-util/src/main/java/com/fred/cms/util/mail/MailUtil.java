@@ -19,10 +19,8 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Component;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-@Component
 public class MailUtil implements Serializable {
 
     public static final String ENCODING = "UTF-8";
@@ -45,7 +43,7 @@ public class MailUtil implements Serializable {
     public void sendSimpleEmail(String to, String subject, String mailContent) {
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo(to);
-        mail.setFrom("fred_test@163.com");
+        mail.setFrom("626269559@qq.com");
         mail.setSubject(subject);
         mail.setText(mailContent);
         mailSender.send(mail);
@@ -66,7 +64,7 @@ public class MailUtil implements Serializable {
         try {
             helper = new MimeMessageHelper(message, true, ENCODING);
             helper.setTo(to);
-            helper.setFrom("liuxiaokun0410@qq.com");
+            helper.setFrom("626269559@qq.com");
             helper.setSubject(subject);
             // this true indicate it is a html mail.
             helper.setText(htmlContent, true);
@@ -99,7 +97,7 @@ public class MailUtil implements Serializable {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, ENCODING);
 
             helper.setTo(to);
-            helper.setFrom("liuxiaokun0410@qq.com");
+            helper.setFrom("626269559@qq.com");
             helper.setText(content, true);
             helper.setSubject(subject);
             ClassPathResource attachment = new ClassPathResource(filePath);

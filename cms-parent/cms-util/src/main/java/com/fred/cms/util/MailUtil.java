@@ -45,7 +45,7 @@ public class MailUtil implements Serializable {
     public void sendSimpleEmail(String email, String subject, String mailContent) {
         SimpleMailMessage mail = new SimpleMailMessage();
         mail.setTo(email);
-        mail.setFrom("liuxiaokun0410@qq.com");
+        mail.setFrom("626269559@qq.com");
         mail.setSubject(subject);
         mail.setText(mailContent);
         mailSender.send(mail);
@@ -66,7 +66,7 @@ public class MailUtil implements Serializable {
         try {
             helper = new MimeMessageHelper(message, true, ENCODING);
             helper.setTo(to);
-            helper.setFrom("liuxiaokun0410@qq.com");
+            helper.setFrom("626269559@qq.com");
             helper.setSubject(subject);
             // this true indicate it is a html mail.
             helper.setText(htmlContent, true);
@@ -99,7 +99,7 @@ public class MailUtil implements Serializable {
             MimeMessageHelper helper = new MimeMessageHelper(message, true, ENCODING);
 
             helper.setTo(to);
-            helper.setFrom("liuxiaokun0410@qq.com");
+            helper.setFrom("626269559@qq.com");
             helper.setText(content, true);
             helper.setSubject(subject);
             ClassPathResource attachment = new ClassPathResource(filePath);
