@@ -16,9 +16,6 @@ public class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
     @PersistenceContext(unitName = "fred")
     protected EntityManager entityManager;
 
-    @PersistenceContext(unitName = "fred")
-    protected EntityManager readEntityManager;
-
     protected Class<T> clazz;
 
     public final void setClazz(final Class<T> clazz) {
@@ -26,7 +23,7 @@ public class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
     }
 
     public final EntityManager getEM(final Boolean isReadOnly) {
-        return isReadOnly ? this.readEntityManager : this.entityManager;
+        return isReadOnly ? this.entityManager : this.entityManager;
     }
 
     @Override

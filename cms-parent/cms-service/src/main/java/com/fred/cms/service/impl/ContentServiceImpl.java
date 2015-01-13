@@ -5,12 +5,14 @@
  */
 package com.fred.cms.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fred.cms.criteria.ContentListCriteria;
 import com.fred.cms.dao.ContentDao;
@@ -19,6 +21,7 @@ import com.fred.cms.dto.ContentDTO;
 import com.fred.cms.model.Content;
 import com.fred.cms.model.User;
 import com.fred.cms.request.ContentListRequest;
+import com.fred.cms.request.ContentRequest;
 import com.fred.cms.service.ContentService;
 import com.fred.cms.service.base.BaseServiceImpl;
 import com.fred.cms.vo.ContentListVO;
@@ -91,5 +94,20 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
         contentListCriteria.setCategoryId(contentListRequest.getCategoryId());
 
         return contentListCriteria;
+    }
+
+    @Override
+    @Transactional(value = "transactionManager", rollbackFor = Throwable.class)
+    public void publishContent(ContentRequest contentRequest) {
+
+        Content content = new Content();
+        content.setCategoryId(contentRequest.getCategoryId());
+        content.setContent(contentRequest.getContent());
+        content.setDescription(contentRequest.getDescription());
+        content.setTitle(contentRequest.getTitle());
+        content.setCreated(new Date());
+        content.setUserId(getUserId());
+
+        contentDao.save(content);
     }
 }

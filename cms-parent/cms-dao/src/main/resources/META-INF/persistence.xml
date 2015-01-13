@@ -16,7 +16,7 @@
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
             <property name="hibernate.connection.username" value="root" />
             <property name="hibernate.connection.password" value="mysql" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://192.168.222.42:3306/cms_core" />
+            <property name="hibernate.connection.url" value="jdbc:mysql://192.168.222.43:3306/cms_core" />
             <property name="hibernate.max_fetch_depth" value="3" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.jdbc.fetch_size" value="18" />

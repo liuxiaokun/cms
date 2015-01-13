@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fred.cms.request.ContentListRequest;
+import com.fred.cms.request.ContentRequest;
 import com.fred.cms.service.ContentService;
 import com.fred.cms.util.ResponseUtil;
 import com.fred.cms.vo.ContentListVO;
@@ -47,5 +48,16 @@ public class ContentController extends BaseController {
     public ResponseEntity<String> getContentDetail(@PathVariable Integer contentId) {
 
         return ResponseUtil.jsonSucceed(contentService.getDetailById(contentId), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "content", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<String> publishContent(@Valid ContentRequest contentRequest, BindingResult result) {
+
+        if (result.hasErrors()) {
+            ResponseUtil.jsonSucceed(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        contentService.publishContent(contentRequest);
+        return ResponseUtil.jsonSucceed(null, HttpStatus.OK);
     }
 }
