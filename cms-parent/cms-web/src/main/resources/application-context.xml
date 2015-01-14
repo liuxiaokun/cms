@@ -15,7 +15,8 @@
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
             <list>
-                <value>classpath:mail.properties</value>
+                <value>classpath:props/mail.properties</value>
+                <value>classpath:props/jdbc.properties</value>
             </list>
         </property>
     </bean>

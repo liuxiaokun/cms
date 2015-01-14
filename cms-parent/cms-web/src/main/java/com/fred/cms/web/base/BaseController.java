@@ -20,7 +20,7 @@ public abstract class BaseController {
     public final ResponseEntity<String> handleException(final Throwable ex) {
 
         Object errorMessage = "server error";
-
+        ex.printStackTrace();
         return ResponseUtil.jsonFailed(errorMessage, ResponseCode.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -97,7 +97,7 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
     }
 
     @Override
-    @Transactional(value = "transactionManager", rollbackFor = Throwable.class)
+    @Transactional(value = "coreTransactionManager", rollbackFor = Throwable.class)
     public void publishContent(ContentRequest contentRequest) {
 
         Content content = new Content();

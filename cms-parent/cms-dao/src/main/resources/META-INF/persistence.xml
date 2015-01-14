@@ -1,29 +1,14 @@
-<?xml version="1.0"?>
-<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
-    version="1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 
-    <persistence-unit name="fred" transaction-type="RESOURCE_LOCAL">
-        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+    <persistence-unit name="coreUnit" transaction-type="RESOURCE_LOCAL">
         <class>com.fred.cms.model.User</class>
         <class>com.fred.cms.model.Content</class>
         <class>com.fred.cms.model.Category</class>
         <class>com.fred.cms.model.Media</class>
         <class>com.fred.cms.model.ContentMedia</class>
         <class>com.fred.cms.model.Review</class>
-        <properties>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="mysql" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://192.168.222.43:3306/cms_core" />
-            <property name="hibernate.max_fetch_depth" value="3" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
-            <property name="hibernate.jdbc.fetch_size" value="18" />
-            <property name="hibernate.jdbc.batch_size" value="10" />
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="false" />
-        </properties>
     </persistence-unit>
 
 </persistence>  

@@ -13,7 +13,7 @@ import javax.persistence.PersistenceContext;
 
 public class BaseDaoImpl<T extends Serializable> implements BaseDao<T> {
 
-    @PersistenceContext(unitName = "fred")
+    @PersistenceContext(unitName = "coreUnit")
     protected EntityManager entityManager;
 
     protected Class<T> clazz;
