@@ -11,7 +11,6 @@
     <import resource="classpath:application-mail.xml" />
     <import resource="classpath:application-persistence.xml" />
 
-    <context:annotation-config />
     <context:component-scan base-package="com.fred.cms" />
 
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
