@@ -10,6 +10,7 @@
 
     <import resource="classpath:application-mail.xml" />
     <import resource="classpath:application-persistence.xml" />
+    <import resource="classpath:application-security.xml" />
 
     <context:component-scan base-package="com.fred.cms" />
 

@@ -10,4 +10,5 @@ import com.fred.cms.model.User;
 
 public interface UserDao extends BaseDao<User> {
 
+    User getByEmail(String email);
 }
