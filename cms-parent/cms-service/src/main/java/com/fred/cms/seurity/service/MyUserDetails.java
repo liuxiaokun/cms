@@ -1,3 +1,8 @@
+/**
+ * @author Fred Liu <liuxiaokun0410@qq.com>
+ * @version 1.7
+ * @since Jan 16, 2015 5:14:44 PM
+ */
 package com.fred.cms.seurity.service;
 
 import java.util.Collection;
