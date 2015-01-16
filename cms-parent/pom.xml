@@ -128,4 +128,55 @@
 
         </dependencies>
     </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- JDBC connection -->
+                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+                <jdbc.url>jdbc:mysql://192.168.222.43:3306/cms_core</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>mysql</jdbc.password>
+
+                <!-- mail configuration. -->
+                <mail.host>smtp.qq.com</mail.host>
+                <mail.username>626269559@qq.com</mail.username>
+                <mail.password>tj1713</mail.password>
+                <mail.smtp.auth>true</mail.smtp.auth>
+                <mail.smtp.timeout>25000</mail.smtp.timeout>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>stage</id>
+            <properties>
+                <!-- JDBC connection -->
+                <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
+                <jdbc.url>jdbc:mysql://192.168.111.11:3306/cms_core</jdbc.url>
+                <jdbc.username>root</jdbc.username>
+                <jdbc.password>mysql</jdbc.password>
+
+                <!-- mail configuration. -->
+                <mail.host>smtp.qq.com</mail.host>
+                <mail.username>626266559@qq.com</mail.username>
+                <mail.password>t1j713</mail.password>
+                <mail.smtp.auth>true</mail.smtp.auth>
+                <mail.smtp.timeout>25000</mail.smtp.timeout>
+            </properties>
+        </profile>
+
+    </profiles>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>
