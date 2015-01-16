@@ -37,8 +37,10 @@ public class MyUserDetailsService implements UserDetailsService {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        MyUserDetail myUserDetail = new MyUserDetail(username, user.getPassword(), true, true, true, true, authorities);
+        MyUserDetails myUserDetail = new MyUserDetails(username, user.getPassword(), true, true, true, true,
+                authorities);
         myUserDetail.setSalt(user.getSalt());
+        myUserDetail.setUserId(user.getUserId());
 
         return myUserDetail;
     }

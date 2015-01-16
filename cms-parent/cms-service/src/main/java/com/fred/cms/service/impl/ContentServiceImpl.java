@@ -43,7 +43,7 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
 
         ContentListCriteria contentListCriteria = generateCriteria(contentListRequest);
         List<Content> contents = contentDao.listAllContents(contentListCriteria);
-
+        int userId = getUserId();
         return new Pagination<ContentListVO>(formatContentsToVOs(contents),
                 contentDao.countAllContents(contentListCriteria));
     }
@@ -56,6 +56,21 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
         ContentVO contentVO = new ContentVO();
         BeanUtils.copyProperties(contentDTO, contentVO);
         return contentVO;
+    }
+
+    @Override
+    @Transactional
+    public void publishContent(ContentRequest contentRequest) {
+
+        Content content = new Content();
+        content.setCategoryId(contentRequest.getCategoryId());
+        content.setContent(contentRequest.getContent());
+        content.setDescription(contentRequest.getDescription());
+        content.setTitle(contentRequest.getTitle());
+        content.setCreated(new Date());
+        content.setUserId(getUserId());
+
+        contentDao.save(content);
     }
 
     private List<ContentListVO> formatContentsToVOs(List<Content> contents) {
@@ -94,20 +109,5 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
         contentListCriteria.setCategoryId(contentListRequest.getCategoryId());
 
         return contentListCriteria;
-    }
-
-    @Override
-    @Transactional
-    public void publishContent(ContentRequest contentRequest) {
-
-        Content content = new Content();
-        content.setCategoryId(contentRequest.getCategoryId());
-        content.setContent(contentRequest.getContent());
-        content.setDescription(contentRequest.getDescription());
-        content.setTitle(contentRequest.getTitle());
-        content.setCreated(new Date());
-        content.setUserId(getUserId());
-
-        contentDao.save(content);
     }
 }

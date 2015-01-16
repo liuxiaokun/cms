@@ -5,9 +5,17 @@
  */
 package com.fred.cms.service.base;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
+import com.fred.cms.seurity.service.MyUserDetails;
+
 public class BaseServiceImpl implements BaseService {
 
     protected int getUserId() {
-        return 1;
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        MyUserDetails user = (MyUserDetails) authentication.getPrincipal();
+
+        return user.getUserId();
     }
 }
