@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `cms_core`.`user` (
   `mobile` CHAR(11) NULL,
   `password` CHAR(32) NOT NULL,
   `salt` CHAR(6) NOT NULL,
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1,
   `is_email_verified` TINYINT(1) NOT NULL DEFAULT 0,
   `is_mobile_verified` TINYINT(1) NOT NULL DEFAULT 0,
   `client_ip` BIGINT NOT NULL DEFAULT 0,
@@ -116,5 +117,28 @@ CREATE TABLE IF NOT EXISTS `cms_core`.`content_media` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+-- -----------------------------------------------------
+-- Table `cms_core`.`role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cms_core`.`role` ;
 
+CREATE TABLE IF NOT EXISTS `cms_core`.`role` (
+  `role_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NOT NULL,
+  `is_active` TINYINT(1) NOT NULL DEFAULT 1,
+  `created` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` TIMESTAMP NULL,
+  PRIMARY KEY (`role_id`))
+ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- Table `cms_core`.`user_role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cms_core`.`user_role` ;
+
+CREATE TABLE IF NOT EXISTS `cms_core`.`user_role` (
+  `user_id` INT UNSIGNED NOT NULL,
+  `role_id` INT UNSIGNED NOT NULL,
+  PRIMARY KEY (`user_id`, `role_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;

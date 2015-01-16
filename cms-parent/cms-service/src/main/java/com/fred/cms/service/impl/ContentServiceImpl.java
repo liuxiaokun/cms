@@ -43,7 +43,7 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
 
         ContentListCriteria contentListCriteria = generateCriteria(contentListRequest);
         List<Content> contents = contentDao.listAllContents(contentListCriteria);
-        int userId = getUserId();
+
         return new Pagination<ContentListVO>(formatContentsToVOs(contents),
                 contentDao.countAllContents(contentListCriteria));
     }

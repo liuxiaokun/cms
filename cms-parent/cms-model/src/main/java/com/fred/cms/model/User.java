@@ -21,9 +21,7 @@ import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "user")
-@NamedQueries({
-    @NamedQuery(name = "User.getByEmail", query = "FROM User WHERE email = :email")
-})
+@NamedQueries({ @NamedQuery(name = "User.getByEmail", query = "FROM User WHERE email = :email AND isActive = true") })
 public class User implements java.io.Serializable {
 
     private static final long serialVersionUID = 6718859190782978249L;
@@ -50,6 +48,9 @@ public class User implements java.io.Serializable {
 
     @Column(name = "salt", nullable = false, length = 6)
     private String salt;
+
+    @Column(name = "is_active", nullable = false)
+    private Boolean isActive = Boolean.TRUE;
 
     @Column(name = "is_email_verified", nullable = false)
     private Boolean isEmailVerified = false;
@@ -134,6 +135,14 @@ public class User implements java.io.Serializable {
         this.salt = salt;
     }
 
+    public Boolean getIsActive() {
+        return isActive;
+    }
+
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
     public Boolean getIsEmailVerified() {
         return isEmailVerified;
     }
@@ -206,6 +215,7 @@ public class User implements java.io.Serializable {
         result = prime * result + ((nickname == null) ? 0 : nickname.hashCode());
         result = prime * result + ((password == null) ? 0 : password.hashCode());
         result = prime * result + ((salt == null) ? 0 : salt.hashCode());
+        result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
         result = prime * result + ((updated == null) ? 0 : updated.hashCode());
         result = prime * result + ((userId == null) ? 0 : userId.hashCode());
         return result;
@@ -279,6 +289,11 @@ public class User implements java.io.Serializable {
             if (other.salt != null)
                 return false;
         } else if (!salt.equals(other.salt))
+            return false;
+        if (isActive == null) {
+            if (other.isActive != null)
+                return false;
+        } else if (!isActive.equals(other.isActive))
             return false;
         if (updated == null) {
             if (other.updated != null)
