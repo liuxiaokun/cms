@@ -9,11 +9,12 @@
     <http auto-config="true">
         <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/**" access="ROLE_USER" />
-        <form-login login-page="/login.jsp" />
+        <form-login login-page="/login.jsp" default-target-url="/contents" always-use-default-target="false"
+            username-parameter="username" password-parameter="password" />
     </http>
 
     <authentication-manager>
-        <authentication-provider ref = "daoAuthenticationProvider" />
+        <authentication-provider ref="daoAuthenticationProvider" />
         <!-- <authentication-provider user-service-ref="myUserDetailsService" /> -->
     </authentication-manager>
 
