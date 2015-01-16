@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import com.fred.cms.dao.UserDao;
+import com.fred.cms.dao.UserRoleDao;
 import com.fred.cms.model.User;
 
 @Component
@@ -25,6 +26,9 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Resource
     private UserDao userDao;
+
+    @Resource
+    private UserRoleDao userRoleDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -35,7 +39,12 @@ public class MyUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("NO SUCH USER!");
         }
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+
+        List<String> roles = userRoleDao.findByUserId(user.getUserId());
+
+        for (String role : roles) {
+            authorities.add(new SimpleGrantedAuthority(role));
+        }
 
         MyUserDetails myUserDetail = new MyUserDetails(username, user.getPassword(), true, true, true, true,
                 authorities);
