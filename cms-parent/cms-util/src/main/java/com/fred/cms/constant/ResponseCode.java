@@ -13,7 +13,7 @@ public enum ResponseCode {
 
     SERVER_ERROR(500),
 
-    INVALID_PARAMETER(10000);
+    PARAMETER_ERROR(10000);
 
     private int value;
 

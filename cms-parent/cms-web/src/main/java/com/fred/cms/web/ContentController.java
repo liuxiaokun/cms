@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fred.cms.constant.ResponseCode;
+import com.fred.cms.exception.CmsExceptionFactory;
+import com.fred.cms.exception.DataValidationException;
 import com.fred.cms.request.ContentListRequest;
 import com.fred.cms.request.ContentRequest;
 import com.fred.cms.service.ContentService;
@@ -33,31 +36,38 @@ public class ContentController extends BaseController {
 
     @RequestMapping(value = "contents", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> listAllContent(@Valid ContentListRequest contentListRequest, BindingResult result) {
+    public ResponseEntity<String> listAllContent(@Valid ContentListRequest contentListRequest, BindingResult result)
+            throws DataValidationException {
 
         if (result.hasErrors()) {
-            ResponseUtil.jsonSucceed(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw CmsExceptionFactory.getException(DataValidationException.class, ResponseCode.PARAMETER_ERROR);
         }
         Pagination<ContentListVO> contents = contentService.listAllContents(contentListRequest);
 
         return ResponseUtil.jsonSucceed(contents, HttpStatus.OK);
-    };
+    }
 
     @RequestMapping(value = "content/{contentId}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> getContentDetail(@PathVariable Integer contentId) {
+    public ResponseEntity<String> getContentDetail(@PathVariable Integer contentId) throws DataValidationException {
+
+        if (contentId.intValue() < 1) {
+            throw CmsExceptionFactory.getException(DataValidationException.class, ResponseCode.PARAMETER_ERROR);
+        }
 
         return ResponseUtil.jsonSucceed(contentService.getDetailById(contentId), HttpStatus.OK);
     }
 
     @RequestMapping(value = "content", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<String> publishContent(@Valid ContentRequest contentRequest, BindingResult result) {
+    public ResponseEntity<String> publishContent(@Valid ContentRequest contentRequest, BindingResult result)
+            throws DataValidationException {
 
         if (result.hasErrors()) {
-            ResponseUtil.jsonSucceed(null, HttpStatus.INTERNAL_SERVER_ERROR);
+            throw CmsExceptionFactory.getException(DataValidationException.class, ResponseCode.PARAMETER_ERROR);
         }
         contentService.publishContent(contentRequest);
+
         return ResponseUtil.jsonSucceed(null, HttpStatus.OK);
     }
 }

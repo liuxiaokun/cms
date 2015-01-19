@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fred.cms.constant.ResponseCode;
+import com.fred.cms.exception.CmsExceptionFactory;
+import com.fred.cms.exception.DataValidationException;
 import com.fred.cms.service.CategoryService;
 import com.fred.cms.util.ResponseUtil;
 import com.fred.cms.vo.CategoryListVO;
@@ -30,9 +33,13 @@ public class CategoryController extends BaseController {
 
     @RequestMapping(value = "category/{parentId}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> listByParentId(@PathVariable Integer parentId) {
+    public ResponseEntity<String> listByParentId(@PathVariable Integer parentId) throws DataValidationException {
 
+        if (parentId < 0) {
+            throw CmsExceptionFactory.getException(DataValidationException.class, ResponseCode.PARAMETER_ERROR);
+        }
         List<CategoryListVO> vos = categoryService.listByParentId(parentId);
+
         return ResponseUtil.jsonSucceed(vos, HttpStatus.OK);
     }
 }

@@ -20,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fred.cms.constant.ResponseCode;
+import com.fred.cms.exception.CmsExceptionFactory;
+import com.fred.cms.exception.DataValidationException;
 import com.fred.cms.request.UserRequest;
 import com.fred.cms.util.MailUtil;
 import com.fred.cms.web.base.BaseController;
@@ -35,17 +38,19 @@ public class UserController extends BaseController {
 
     @RequestMapping(value = "/{username}", method = RequestMethod.GET)
     @ResponseBody
-    public String testFrameWork(@Valid UserRequest userRequest, BindingResult validResult,
-            @PathVariable String username, @RequestParam String password, HttpServletRequest request,
-            HttpServletResponse response) {
+    public String testFrameWork(@Valid UserRequest userRequest, BindingResult result, @PathVariable String username,
+            @RequestParam String password, HttpServletRequest request, HttpServletResponse response)
+            throws DataValidationException {
 
-        if (validResult.hasErrors()) {
-            System.out.println("code error!");
+        if (result.hasErrors()) {
+            throw CmsExceptionFactory.getException(DataValidationException.class, ResponseCode.PARAMETER_ERROR);
         }
         Map<String, Object> params = Maps.newHashMap();
         params.put("username", "Fred");
-        mailUtil.sendTemplatedHtmlEmail("406394685@qq.com", "subject", "/imgs/qqmusic.jpg", "emailTemplate/html.vm", params);
-        //mailUtil.sendAttachemetnEmail("406394685@qq.com", "wo shi neirong", "wo shi zhuti ", "qqmusic.jpg");
+        mailUtil.sendTemplatedHtmlEmail("406394685@qq.com", "subject", "/imgs/qqmusic.jpg", "emailTemplate/html.vm",
+                params);
+        // mailUtil.sendAttachemetnEmail("406394685@qq.com", "wo shi neirong",
+        // "wo shi zhuti ", "qqmusic.jpg");
         return username + ":" + password + ":" + userRequest.getCode();
     }
 }

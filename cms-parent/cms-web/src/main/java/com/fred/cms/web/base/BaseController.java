@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fred.cms.constant.ResponseCode;
+import com.fred.cms.exception.CmsException;
+import com.fred.cms.exception.DataValidationException;
+import com.fred.cms.util.ExceptionMessageUtil;
 import com.fred.cms.util.ResponseUtil;
 
 public abstract class BaseController {
@@ -19,8 +22,26 @@ public abstract class BaseController {
     @ResponseBody
     public final ResponseEntity<String> handleException(final Throwable ex) {
 
-        Object errorMessage = "server error";
-        ex.printStackTrace();
-        return ResponseUtil.jsonFailed(errorMessage, ResponseCode.SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR);
+        Object errorMessage = "Server error.";
+        ResponseCode code = ResponseCode.SERVER_ERROR;
+        HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        if (ex instanceof CmsException) {
+            CmsException cmsException = (CmsException) ex;
+            ResponseCode responseCode = cmsException.getCode();
+            code = (null != responseCode) ? responseCode : code;
+            errorMessage = ExceptionMessageUtil.getExceptionMessage(code.getValue());
+
+            if (code.getValue() != ResponseCode.SERVER_ERROR.getValue()) {
+                if (ex instanceof DataValidationException) {
+                    httpStatus = HttpStatus.BAD_REQUEST;
+                } else {
+                    httpStatus = HttpStatus.OK;
+                }
+            }
+        }
+
+        return ResponseUtil.jsonFailed(errorMessage, code, httpStatus);
     }
+
 }

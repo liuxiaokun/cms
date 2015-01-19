@@ -14,6 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fred.cms.constant.ResponseCode;
+import com.fred.cms.exception.CmsExceptionFactory;
+import com.fred.cms.exception.DataValidationException;
 import com.fred.cms.request.ReviewListRequest;
 import com.fred.cms.service.ReviewService;
 import com.fred.cms.util.ResponseUtil;
@@ -28,10 +31,14 @@ public class ReviewController extends BaseController {
     private ReviewService reviewService;
 
     @RequestMapping(value = "content/review")
-    public ResponseEntity<String> getContentReview(@Valid ReviewListRequest reviewListRequest,
-            BindingResult bindingResult) {
+    public ResponseEntity<String> getContentReview(@Valid ReviewListRequest reviewListRequest, BindingResult result)
+            throws DataValidationException {
 
+        if (result.hasErrors()) {
+            throw CmsExceptionFactory.getException(DataValidationException.class, ResponseCode.PARAMETER_ERROR);
+        }
         Pagination<ReviewListVO> vos = reviewService.listByContentId(reviewListRequest);
+
         return ResponseUtil.jsonSucceed(vos, HttpStatus.OK);
     }
 }

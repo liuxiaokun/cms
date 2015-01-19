@@ -138,7 +138,7 @@
             <properties>
                 <!-- JDBC connection -->
                 <jdbc.driver>com.mysql.jdbc.Driver</jdbc.driver>
-                <jdbc.url>jdbc:mysql://192.168.222.43:3306/cms_core</jdbc.url>
+                <jdbc.url>jdbc:mysql://192.168.222.76:3306/cms_core</jdbc.url>
                 <jdbc.username>root</jdbc.username>
                 <jdbc.password>mysql</jdbc.password>
 
