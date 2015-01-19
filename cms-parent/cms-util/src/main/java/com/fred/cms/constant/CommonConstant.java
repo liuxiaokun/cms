@@ -39,6 +39,6 @@ public interface CommonConstant {
 
     String MOBILE = "mobile";
 
-    Integer DEFAULT_USER_LEVEL_ID = 1;
+    Integer DEFAULT_USER_ROLE_ID = 1;
 
 }

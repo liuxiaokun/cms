@@ -9,6 +9,8 @@
         <class>com.fred.cms.model.Media</class>
         <class>com.fred.cms.model.ContentMedia</class>
         <class>com.fred.cms.model.Review</class>
+        <class>com.fred.cms.model.Role</class>
+        <class>com.fred.cms.model.UserRole</class>
     </persistence-unit>
 
 </persistence>  

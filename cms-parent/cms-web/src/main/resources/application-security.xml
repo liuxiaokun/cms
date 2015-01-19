@@ -9,11 +9,12 @@
     <http auto-config="true">
 
         <intercept-url pattern="/login.jsp*" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+        <intercept-url pattern="/user/signup" method="POST" access="IS_AUTHENTICATED_ANONYMOUSLY" />
         <intercept-url pattern="/**" access="ROLE_USER" />
 
         <form-login login-page="/login.jsp" default-target-url="/contents" always-use-default-target="false"
             username-parameter="username" password-parameter="password" />
-        <access-denied-handler ref="myAccessDeniedHandler"/>
+        <access-denied-handler ref="myAccessDeniedHandler" />
         <logout logout-url="/signout" success-handler-ref="myLogoutSuccessHandler" delete-cookies="JSESSIONID" />
     </http>
 

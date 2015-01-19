@@ -84,5 +84,16 @@
             <artifactId>spring-security-taglibs</artifactId>
         </dependency>
 
+        <!-- Servlet -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-servlet-api</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+        </dependency>
+
     </dependencies>
 </project>
