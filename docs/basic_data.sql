@@ -43,6 +43,7 @@ INSERT INTO `cms_core`.`role` (`role_id`, `name`, `is_active`, `created`, `updat
 TRUNCATE TABLE `cms_core`.`user_role`;
 
 INSERT INTO `cms_core`.`user_role` (`user_id`, `role_id`) VALUES ('1', '1');
+INSERT INTO `cms_core`.`user_role` (`user_id`, `role_id`) VALUES ('1', '2');
 INSERT INTO `cms_core`.`user_role` (`user_id`, `role_id`) VALUES ('2', '1');
 INSERT INTO `cms_core`.`user_role` (`user_id`, `role_id`) VALUES ('2', '2');
 
