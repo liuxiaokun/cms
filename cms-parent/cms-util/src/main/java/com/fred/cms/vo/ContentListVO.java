@@ -18,7 +18,7 @@ public class ContentListVO implements Serializable {
 
     private String description;
 
-    private Date create;
+    private Date created;
 
     private Integer sortOrder;
 
@@ -50,12 +50,12 @@ public class ContentListVO implements Serializable {
         this.description = description;
     }
 
-    public Date getCreate() {
-        return create;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setCreate(Date create) {
-        this.create = create;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
     public Integer getSortOrder() {

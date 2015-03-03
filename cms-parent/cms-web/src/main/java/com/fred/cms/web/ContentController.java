@@ -6,6 +6,7 @@
 package com.fred.cms.web;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -36,8 +37,10 @@ public class ContentController extends BaseController {
 
     @RequestMapping(value = "contents", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<String> listAllContent(@Valid ContentListRequest contentListRequest, BindingResult result)
+    public ResponseEntity<String> listAllContent(@Valid ContentListRequest contentListRequest, BindingResult result,
+            HttpServletResponse response)
             throws DataValidationException {
+        response.setHeader("Access-Control-Allow-Origin", "*");
 
         if (result.hasErrors()) {
             throw CmsExceptionFactory.getException(DataValidationException.class, ResponseCode.PARAMETER_ERROR);
