@@ -89,7 +89,7 @@ public class ContentServiceImpl extends BaseServiceImpl implements ContentServic
         vo.setTitle(content.getTitle());
         vo.setDescription(content.getDescription());
         vo.setSortOrder(content.getSortOrder());
-        vo.setCreate(content.getCreated());
+        vo.setCreated(content.getCreated());
 
         User user = userDao.getById(content.getUserId());
         vo.setNickname(user.getNickname());
